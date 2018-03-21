@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Reporting Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700|Roboto" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="normalize.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+</head>
+<body>
+<div id="sideNav">
+    <a href="javascript:closeDisplay()"><img src="WFT-logo.png" class="logo"> <h1>Company Reporting</h1></a>
+    <p><br></p>
+    <ul class="nav flex-column" role="tablist" aria-orientation="vertical">
+        <li class="nav-item" style="display:none;"><a href="#home-pane" data-toggle="tab" role="tab" data-category="home" data-parent="sideNav">Home</a></li>
+        <li class="nav-item"><a href="#business-pane" data-toggle="tab" role="tab" data-category="business" data-parent="sideNav"><img src="Icon%20-%20Business%20Strategy.png"> Business Strategy</a></li>
+        <li class="nav-item"><a href="#sales-marketing-pane" data-toggle="tab" role="tab" data-category="sales-marketing" data-parent="sideNav"><img src="Icon%20-%20Sales%20and%20Marketing.png"> Sales & Marketing</a></li>
+        <li class="nav-item"><a href="#opportunities-pane" data-toggle="tab" role="tab" data-category="opportunities" data-parent="sideNav"><img src="Icon%20-%20Opportunity.png"> Opportunities</a></li>
+        <li class="nav-item"><a href="#revenue-pane" data-toggle="tab" role="tab" data-category="revenue" data-parent="sideNav"><img src="Icon%20-%20Revenue.png"> Revenue</a></li>
+    </ul>
+    <hr>
+    <a id="modResultsBtn" href="javascript:openModResults();">Campaign Filter <span id="modCaret">&#10095;</span></a>
+
+    <div id="modResultsPane">
+        <p>
+            <label>Campaign Type</label><br>
+            <select id="campaignSelect" style="width: 100%;" onchange="populateCampaigns(this);">
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </p>
+        <hr />
+        <p>
+            <label>Campaigns</label><br />
+            <span id="campaignNames">
+                <a href="javascript:switchCampaign('1');">Campaign 1</a><br>
+                <a href="javascript:switchCampaign('2');">Campaign 2</a><br>
+                <a href="javascript:switchCampaign('3');">Campaign 3</a><br>
+                <hr />
+                <a href="javascript:switchCampaign('All');">&#10092; All Campaigns</a>
+            </span>
+        </p>
+    </div>
+</div>
+<div id="mainContent">
+    <div id="header">
+        <div id="breadcrumb"><a href="javascript:closeDisplay()" style="color:#fff;">Home</a> // <span id="breadcrumbCurrent"></span></div>
+        <div id="headerTitle">
+            <h1><span>Company Reporting Dashboard</span></h1>
+            <span>Make a selection from the menu below</span>
+        </div>
+        <div class="row">
+            <div class="category col-md-3 col-sm-6 active">
+                <span class="largeNum" data-category="business"><span class="counter" data-count="37">0</span>%</span><br>
+                <span>Reduced Costs</span><br>
+                <span class="subtext">last update: xx/xx/xx</span>
+            </div>
+            <div class="category col-md-3 col-sm-6 active">
+                <span class="largeNum" data-category="sales-marketing"><span class="counter" data-count="3">0</span></span><br>
+                <span>Active Campaigns</span><br>
+                <span class="subtext">last update: xx/xx/xx</span>
+            </div>
+            <div class="category col-md-3 col-sm-6 active">
+                <span class="largeNum" data-category="opportunities">$<span class="counter" data-count="519">490</span>K</span><br>
+                <span>Won Opportunities</span><br>
+                <span class="subtext">last update: xx/xx/xx</span>
+            </div>
+            <div class="category col-md-3 col-sm-6 active">
+                <span class="largeNum" data-category="revenue">$<span class="counter" data-count="1.1">00</span>M</span><br>
+                <span>Products/Services</span><br>
+                <span class="subtext">last update: xx/xx/xx</span>
+            </div>
+        </div>
+    </div>
+    <div id="mainNav">
+        <ul class="nav" role="tablist">
+            <li class="nav-item" style="display:none;"><a href="#home-pane" data-toggle="tab" role="tab" data-category="home" data-parent="mainNav">Home</a></li>
+            <li class="nav-item col-md-3"><a href="#business-pane" data-toggle="tab" role="tab" data-category="business" data-parent="mainNav">Business Strategy</a></li>
+            <li class="nav-item col-md-3"><a href="#sales-marketing-pane" data-toggle="tab" role="tab" data-category="sales-marketing" data-parent="mainNav">Sales & Marketing</a></li>
+            <li class="nav-item col-md-3"><a href="#opportunities-pane" data-toggle="tab" role="tab" data-category="opportunities" data-parent="mainNav">Opportunities</a></li>
+            <li class="nav-item col-md-3"><a href="#revenue-pane" data-toggle="tab" role="tab" data-category="revenue" data-parent="mainNav">Revenue</a></li>
+        </ul>
+    </div>
+    <div id="mainDisplay">
+        <!-- MAIN DISPLAY FOR ALL CAMPAIGNS -->
+        <div class="tab-content">
+            <div id="home-pane" data-category="home" class="tab-pane fade show active" role="tabpanel">
+                <img src="Dashboard_Demo___Web_Analytics.jpg" class="img-fluid" style="width: 100%;">
+            </div>
+            <div id="business-pane" data-category="business" class="tab-pane fade show" role="tabpanel">
+                <h2><span>All Campaigns</span></h2>
+                <table>
+                    <tr>
+                        <td><b>Optimized Solutions:</b> Product Name</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10026;</td>
+                    </tr>
+                    <tr>
+                        <td><b>Software:</b> Product Name</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10026;</td>
+                    </tr>
+                    <tr>
+                        <td><b>Artificial Lift Systems:</b> Product Name</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10026;</td>
+                    </tr>
+                    <tr>
+                        <td><b>Artificial Lift Systems:</b> Product Name</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10026;</td>
+                    </tr>
+                    <tr>
+                        <td><b>Tubular Running Services:</b> Product Name</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10004;</td>
+                        <td class="icon green">&#10026;</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="sales-marketing-pane" data-category="sales-marketing" class="tab-pane fade show" role="tabpanel">
+                <h2><span>All Campaigns</span></h2>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="widget">
+                            <span class="icon"><img src=""></span>
+                            <span class="largeNum">42</span>
+                            <span class="widgetTitle">CVR's (Client Visits)</span>
+                            <span>All Campaigns</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="widget">
+                            <span class="icon"><img src=""></span>
+                            <span class="largeNum">1,536</span>
+                            <span class="widgetTitle">Leads</span>
+                            <span>All Campaigns</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="widget">
+                            <span class="icon"><img src=""></span>
+                            <span class="largeNum">67</span>
+                            <span class="widgetTitle">Lead Conversions</span>
+                            <span>From 1,536 Leads</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="opportunities-pane" data-category="opportunities" class="tab-pane fade show" role="tabpanel">
+                <h2><span>All Campaigns</span></h2>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <a href="#" target="_blank">
+                            <div class="widget">
+                                <span class="largeNum">$2,502,300</span>
+                                <span class="widgetTitle">Chesapeake Energy Corporation</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Opportunitiy 2 -->
+                    <div class="col-sm-3">
+                        <a href="#" target="_blank">
+                            <div class="widget">
+                                <span class="largeNum">$2,500,000</span>
+                                <span class="widgetTitle">Company Name</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Opportunitiy 3 -->
+                    <div class="col-sm-3">
+                        <a href="#" target="_blank">
+                            <div class="widget">
+                                <span class="largeNum">$1,290,000</span>
+                                <span class="widgetTitle">Company Name</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Opportunitiy 4 -->
+                    <div class="col-sm-3">
+                        <a href="#" target="_blank">
+                            <div class="widget">
+                                <span class="largeNum">$1,120,176</span>
+                                <span class="widgetTitle">Company Name</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Opportunitiy 5 -->
+                    <div class="col-sm-3">
+                        <a href="#" target="_blank">
+                            <div class="widget">
+                                <span class="largeNum">$1,120,176</span>
+                                <span class="widgetTitle">Company Name</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Opportunitiy 6 -->
+                    <div class="col-sm-3">
+                        <a href="#" target="_blank">
+                            <div class="widget">
+                                <span class="largeNum">$591,204</span>
+                                <span class="widgetTitle">Company Name</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Opportunitiy 7 -->
+                    <div class="col-sm-3">
+                        <a href="#" target="_blank">
+                            <div class="widget">
+                                <span class="largeNum">$591,204</span>
+                                <span class="widgetTitle">Company Name</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="#" target="_blank">
+                            <div class="widget">
+                                <span class="largeNum">$450,000</span>
+                                <span class="widgetTitle">Company Name</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="revenue-pane" data-category="revenue" class="tab-pane fade show" role="tabpanel">
+                <h2><span>All Campaigns</span></h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="widget">
+                            <span class="largeNum">$518,867</span>
+                            <span class="widgetTitle">Total Revenue</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="widget">
+                            <span class="largeNum">$1,130,467</span>
+                            <span class="widgetTitle">Total Opportunities</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MAIN DISPLAY FOR ALL CAMPAIGNS -->
+
+    </div>
+</div>
+
+
+<script src="matchHeight.js"></script>
+<script>
+    $(function() {
+        $('#opportunities-pane').find('.widget').matchHeight({byRow:false});
+        $('#sales-marketing-pane').find('.widget').matchHeight({byRow:false});
+    });
+
+    /* Number Counter */
+    $(document).ready(function(){
+        $('.counter').each(function() {
+            var $this = $(this),
+                countTo = $this.attr('data-count');
+
+            $({ countNum: $this.text()}).animate({
+                    countNum: countTo
+                },
+                {
+                    duration: 700,
+                    easing:'linear',
+                    step: function() {
+                        $this.text(Math.floor(this.countNum));
+                    },
+                    complete: function() {
+                        $this.text(this.countNum);
+                        //alert('finished');
+                    }
+
+                });
+        });
+    });
+
+    /* Populate Campaign Names in Filter */
+    function populateCampaigns(){
+        var all = ['','Campaign 1','Campaign 2','Campaign 3'];
+        var active = ['','Campaign 1','Campaign 2'];
+        var inactive = ['','Campaign 3'];
+        var $names = $('#campaignNames');
+        var $select = $('#campaignSelect');
+        var namesList = '';
+
+        /* ** FIX ** */
+        if($select.val() === 'all'){
+            for(var x=1; x<all.length; x++){
+                namesList += '<a href=\"javascript:switchCampaign(\''+x+'\');\">' + all[x] + '</a><br>';
+            }
+        }
+        else if($select.val() === 'active'){
+            for(var x=1; x<active.length; x++){
+                namesList += '<a href=\"javascript:switchCampaign(\''+x+'\');\">' + active[x] + '</a><br>';
+            }
+        }
+        else if($select.val() === 'inactive'){
+            for(var x=1; x<inactive.length; x++){
+                namesList += '<a href=\"javascript:switchCampaign(\'3\');\">' + inactive[x] + '</a><br>';
+            }
+        }
+        else {
+            namesList += '';
+        }
+        $names.html(namesList);
+    }
+
+    /* Link Menus*/
+    $('[data-toggle=tab]').click(function(){
+
+        var category = '[data-category="' + $(this).attr('data-category') + '"]';
+        var main = '#mainNav a' + category;
+        var side = '#sideNav a' + category;
+
+        $('#header').find('.category').removeClass('active');
+        $('span' + category).parent().addClass('active');
+
+        /* hides associated pane when active tab is clicked again
+        if ($(this).parent().hasClass('active')){
+            $('#home-pane').toggleClass('active');
+            $('#headerTitle').slideDown();
+            $('#header').find('.category').addClass('active');
+
+            $($(this).attr('href')).toggleClass('active');
+        }*/
+
+            $('#headerTitle').slideUp();
+            /* link side and main nav menus */
+            if($(this).attr("data-parent") === "mainNav"){
+                $('#sideNav').find('li').removeClass('active');
+                $(side).parent().toggleClass('active');
+            }
+            else{
+                $('#mainNav').find('li').removeClass('active');
+                $(main).parent().toggleClass('active');
+            }
+    });
+
+    /* Return Home */
+    function closeDisplay(){
+        var cat = $('.tab-content').find('.active').attr('data-category');
+        var curr = $('#breadcrumbCurrent').html();
+
+        if(cat !== 'home' || curr !== ''){
+            $('#mainDisplay').load("Main.html");
+            $('#home-pane').css('visibility','visible');
+            $('#mainNav a[data-category="home"]').click();
+            $('#headerTitle').slideDown();
+            $('#breadcrumbCurrent').html('');
+
+            $('#modResultsBtn').removeClass('active');
+            $('#modResultsPane').hide();
+            $('#modCaret').removeClass('down');
+        }
+    }
+
+    function switchCampaign(num){
+        var $mainDisplay = $('#mainDisplay');
+        var $breadcrumb = $('#breadcrumbCurrent');
+        var $home = $('#mainNav a[data-category="home"]');
+        /*var campaignFile = 'Campaign' + num + '.html';
+        $('#mainDisplay').load(campaignFile);*/
+        var cat = $('.tab-content').find('.active').attr('data-category');
+
+        switch(num){
+            case '1':
+            $mainDisplay.html("");
+            $mainDisplay.load("Campaign1.html");
+                $home.click();
+                $('#opportunities-pane').find('.widget').matchHeight({byRow:false});
+                $('#sales-marketing-pane').find('.widget').matchHeight({byRow:false});
+                $breadcrumb.html('Campaign 1');
+                break;
+            case '2':
+            $mainDisplay.html("");
+                $mainDisplay.load('Campaign2.html');
+                $home.click();
+                $('#opportunities-pane').find('.widget').matchHeight({byRow:false});
+                $('#sales-marketing-pane').find('.widget').matchHeight({byRow:false});
+                $breadcrumb.html('Campaign 2');
+                break;
+            case '3':
+            $mainDisplay.html("");
+                $mainDisplay.load('Campaign3.html');
+                $home.click();
+                $('#opportunities-pane').find('.widget').matchHeight({byRow:false});
+                $('#sales-marketing-pane').find('.widget').matchHeight({byRow:false});
+                $breadcrumb.html('Campaign 3');
+                break;
+            case 'All':
+            $mainDisplay.html("");
+                $mainDisplay.load('Main.html');
+                $('#home-pane').css('visibility','hidden');
+                $home.click();
+                $('#opportunities-pane').find('.widget').matchHeight({byRow:false});
+                $('#sales-marketing-pane').find('.widget').matchHeight({byRow:false});
+                $breadcrumb.html('');
+                break;
+            default:
+                break;
+        }
+
+        $('a[data-category="'+cat+'"]').click();
+    }
+
+    /* Toggle Modify Results Pane */
+    function openModResults(){
+        $('#modResultsBtn').toggleClass('active');
+        $('#modResultsPane').toggle();
+        $('#modCaret').toggleClass('down');
+    }
+
+</script>
+</body>
+</html>
