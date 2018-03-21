@@ -1,0 +1,440 @@
+html {
+    overflow-y: scroll;
+    width: 100vw;
+}
+
+body {
+    color: #4e4e4f;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+a, a:hover, a:active, a:focus {
+    color: #a6a6a6;
+    text-decoration: none;
+}
+
+#sideNav {
+    background-color: #1a222b;
+    color: #a6a6a6;
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    height: 100%;
+    letter-spacing: .1px;
+    padding: 20px;
+    position: fixed;
+    width: 15%;
+    z-index: 1000;
+}
+
+#sideNav .logo {
+    width: 35px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+#sideNav h1 {
+    color: #fff;
+    display: inline-block;
+    font-size: .9em;
+    text-transform: uppercase;
+}
+
+#sideNav .nav .active {
+    border-left: 3px solid #ce1141;
+}
+#sideNav .nav .active a {
+    padding-left: 17px;
+}
+
+#sideNav li {
+    list-style-type: none;
+    margin: 0 -20px;
+}
+
+#sideNav li a {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+}
+
+#sideNav li a:hover {
+    background-color: #242d38;
+}
+
+#sideNav li img {
+    margin-right: 10px;
+}
+
+#sideNav hr {
+    border-color: #2c333a;
+}
+
+#modResultsBtn {
+    display: block;
+    padding: 20px;
+    margin: 0 -20px;
+    text-transform: uppercase;
+    width: calc(100%+40px);
+}
+
+#modResultsBtn.active, #modResultsBtn.active:hover {
+    background-color: #ddd;
+    border-right: 1px solid #1a222b;
+    color: #868586;
+}
+
+#modCaret {
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+}
+
+#modCaret.down {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    /* IE6–IE9 */
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9914448613738104, M12=-0.13052619222005157,M21=0.13052619222005157, M22=0.9914448613738104, sizingMethod='auto expand');
+    zoom: 1;
+}
+
+#modResultsPane {
+    background-color: #fff;
+    border-right: 1px solid #1a222b;
+    color: #2e3133;
+    display: none;
+    font-size: .9em;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    margin: 0 -20px;
+    padding: 20px;
+}
+
+#modResultsPane a {
+    color: #2e3133;
+}
+#modResultsPane a:hover {
+    color: #ce1141;
+}
+
+#modResultsPane hr {
+    border-color: #a6a6a6;
+}
+
+#modResultsPane label {
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+#modResultsPane [type='checkbox'] + label {
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    text-transform: none;
+}
+
+#mainContent {
+    position: absolute;
+    right: 0;
+    background-color: #eeedee;
+    height: 100%;
+    width: 85%;
+}
+
+#breadcrumb {
+    color: #fff;
+    font-size: .9em;
+    padding: 30px;
+    text-align: left;
+}
+
+#header {
+    background: url('Background Image.jpg') fixed no-repeat center center;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+span.subtext {
+    font-size: .7em;
+    font-style: italic;
+}
+
+#headerTitle{
+    color: #fff;
+    margin: 75px 0;
+    text-align: center;
+}
+
+#headerTitle h1 {
+    margin: 10px;
+}
+#headerTitle h1 span {
+    border: 1px solid #fff;
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    padding: 1px 10px 3px 10px;
+    text-transform: uppercase;
+}
+
+#header .row {
+    margin: 0;
+}
+
+#header .category.active {
+    color: #fff;
+}
+#header .category {
+    padding: 40px 0;
+    color: rgba(255,255,255,0.5);
+}
+
+#header .category .largeNum {
+    height: 25vh;
+    font-size: 5vw;
+    font-weight: bold;
+    line-height: 11vh;
+}
+
+#mainNav {
+    border-collapse: collapse;
+}
+
+#mainNav li {
+    background-color: #fff;
+    border: 0 solid #a6a6a6;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    cursor: pointer;
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#mainNav li a:hover {
+    color: #ce1141;
+}
+
+#mainNav .nav a {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 0;
+}
+#mainNav .nav .active a{
+    color: #ce1141;
+}
+
+#mainDisplay {
+    background-color: #eeedee;
+    padding: 30px;
+}
+
+@media screen and (max-width: 1400px) and (min-width: 1147px){
+    #sideNav {
+        width: 220px;
+    }
+    #mainContent {
+        width: calc(100vw - 220px);
+    }
+}
+
+@media screen and (max-width: 1146px){
+    #sideNav {
+        width: 220px;
+    }
+    #mainContent {
+        width: calc(100vw - 236px);
+    }
+}
+
+/* All Squares */
+.widget {
+    background-color: #fff;
+    border: 1px solid #a6a6a6;
+    cursor: pointer;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.widget .icon {
+    text-align: right;
+}
+
+.widget span {
+    display: block;
+}
+
+a > .widget {
+    color: #4e4e4f;
+}
+
+.widget:hover {
+    background-color: #1a222b;
+    border-top: 5px solid #ce1141;
+    color: #ce1141;
+    padding-top: 16px;
+}
+
+.widgetTitle {
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    letter-spacing: .1px;
+    text-transform: none;
+}
+
+.widgetTitle + span {
+    font-size: .9em;
+    line-height: 1em;
+}
+
+h2 {
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    border-bottom: 1px solid #b4b4b5;
+    line-height: 0;
+    padding: 0;
+    margin-top: 1em;
+}
+
+h2 span {
+    background-color: #eeedee;
+    padding-right: 10px;
+}
+
+.largeNum {
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 4.8vw;
+    line-height: 4.8vw;
+    margin-bottom: .25em;
+}
+
+ul.list {
+    padding: 0;
+    text-align: center;
+}
+
+ul.list a, ul.list a:hover {
+    color: #4e4e4f;
+}
+
+ul.list li {
+    max-height: 0;
+    padding: 0;
+    margin-top: -20px;
+    opacity: 0;
+    list-style-type: none;
+
+    -webkit-transition: all .2s ease-out, background-color 0s;
+    -moz-transition: all .2s ease-out, background-color 0s;
+    -ms-transition: all .2s ease-out, background-color 0s;
+    -o-transition: all .2s ease-out, background-color 0s;
+    transition: all .2s ease-out, background-color 0s;
+}
+
+.widget:hover + ul.list li, ul.list:hover > li{
+    max-height: 1000px;
+    padding: 8px;
+    margin-top: 0;
+    opacity: 1;
+}
+
+li.listTitle {
+    background-color: #999;
+    color: #fff;
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    letter-spacing: .2px;
+    text-transform: uppercase;
+}
+
+li.listItem {
+    background-color: #fff;
+    border: 1px solid #b4b4b5;
+    border-top: 0;
+    cursor: pointer;
+}
+
+li.listItem:hover {
+    background-color: #eeedee;
+}
+
+/* Business Strategy Tables */
+table {
+    border-collapse: collapse;
+    color: #666;
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+td {
+    background-color: #fff;
+    border: 1px solid #b4b4b5;
+    padding: 5px 20px;
+}
+
+td.icon {
+    color: #d3d3d3;
+    font-size: 28px;
+}
+
+td.green {
+    color: #0aab00;
+}
+
+tr:hover td{
+    background-color: #eeedee;
+}
+
+th{
+    border-color: #ffffff;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+td:first-child {
+    text-align: left;
+}
+
+/* Sales & Marketing */
+#sales-marketing-pane .widgetTitle {
+    text-transform: uppercase;
+}
+
+.progress {
+    border-radius: 0;
+    height: 5px;
+    margin: 12px 0 8px 0;
+}
+.progress-bar {
+    background-color: #527a8a;
+}
+
+/* Opportunities */
+#opportunities-pane .widgetTitle {
+    margin-bottom: .5em;
+}
+#opportunities-pane .largeNum {
+    color: #ce1141;
+    font-size: 2.8vw;
+    line-height: 2.8vw;
+    margin-top: 1.5em;
+}
+
+/* Revenue */
+ #revenue-pane .widget {
+     padding: 50px 0;
+     text-align: center;
+ }
+
+#revenue-pane .largeNum {
+    color: #ce1141;
+}
